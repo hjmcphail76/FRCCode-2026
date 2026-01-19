@@ -2,6 +2,8 @@ package frc.robot.utils;
 
 import java.io.IOException;
 
+import com.pathplanner.lib.util.FlippingUtil;
+
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -9,12 +11,13 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import frc.robot.RobotConstants.ScoringConstants;
 import edu.wpi.first.wpilibj.RobotBase;
 
 public class CowboyUtils {
 
     public static final AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout
-            .loadField(AprilTagFields.k2025ReefscapeWelded);
+            .loadField(AprilTagFields.kDefaultField);
 
     public static Pose2d testPose = new Pose2d(1.4, 5.55, new Rotation2d(Math.toRadians(0)));
 
@@ -54,6 +57,24 @@ public class CowboyUtils {
         return perpendicularError;
 
         // return -origin.minus(target).getX();
+    }
+
+    private static Rotation2d getAngleToPose(Pose2d pose1, Pose2d pose2){
+        double xOffset = pose2.getX() - pose1.getX();
+
+        double yOffset = pose2.getY() - pose1.getY();
+
+        return new Rotation2d(Math.atan(yOffset/xOffset));
+
+    }
+
+    public static Pose2d getPoseAlongArcFromY(Pose2d robotPose, Pose2d rotationCenterPose, double radius){
+        double xComponet = Math.sqrt(Math.pow(radius, 2) - Math.pow(robotPose.getY(), 2));
+        return new Pose2d(xComponet > 0 ? xComponet : robotPose.getX(), robotPose.getY(), getAngleToPose(robotPose, rotationCenterPose));
+    }
+
+    public static Pose2d getAllianceHubPose(){
+        return isBlueAlliance() ? ScoringConstants.BLUE_ALLIANCE_HUB : FlippingUtil.flipFieldPose(ScoringConstants.BLUE_ALLIANCE_HUB);
     }
 
     public static final class RobotModes {

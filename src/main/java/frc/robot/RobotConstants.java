@@ -37,13 +37,7 @@ public final class RobotConstants {
 
         public static final class ScoringConstants {
 
-                public enum Setpoints {
-                        HOME,
-                        HP,
-                        L1,
-                        L2,
-                        L3
-                }
+                public static final Pose2d BLUE_ALLIANCE_HUB = new Pose2d(4.630,4.630,new Rotation2d());
 
                 public static final Pose2d[][] REEF_SIDE_POSES;
 

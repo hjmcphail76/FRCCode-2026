@@ -6,6 +6,7 @@ package frc.robot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.littletonrobotics.junction.Logger;
 
@@ -51,8 +52,8 @@ import frc.robot.utils.CowboyUtils;
 import frc.robot.utils.QuestCalibration;
 import frc.robot.utils.CowboyUtils.RobotModes;
 import frc.robot.RobotConstants.PortConstants.CAN;
-import frc.robot.RobotConstants.ScoringConstants.Setpoints;
 import frc.robot.RobotState.AutoMode;
+import frc.robot.automation.AimAlongArcRadiusCommand;
 import frc.robot.automation.AutomatedScoring;
 
 //@Logged(name = "RobotContainer")
@@ -190,13 +191,15 @@ public class RobotContainer {
 
                 driveSubsystem.setDefaultCommand(new TeleopDriveCommand(driveSubsystem, driveJoystick));
 
-                new JoystickButton(driveJoystick, 6).onTrue(QuestCalibration
-                                .CollectCalibrationDataCommand(
-                                                driveSubsystem::runChassisSpeeds,
-                                                driveSubsystem::resetOdometry,
-                                                questNavSubsystem::getUncorrectedPose,
-                                                driveSubsystem,
-                                                questNavSubsystem));
+                // new JoystickButton(driveJoystick, 6).onTrue(QuestCalibration
+                //                 .CollectCalibrationDataCommand(
+                //                                 driveSubsystem::runChassisSpeeds,
+                //                                 driveSubsystem::resetOdometry,
+                //                                 questNavSubsystem::getUncorrectedPose,
+                //                                 driveSubsystem,
+                //                                 questNavSubsystem));
+
+                new JoystickButton(driveJoystick, 6).whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 1.75, driveJoystick));
 
                 new JoystickButton(driveJoystick, 1).onTrue(RobotState.setCanRotate(true))
                                 .onFalse(RobotState.setCanRotate(false));

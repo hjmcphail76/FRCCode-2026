@@ -1,29 +1,13 @@
 package frc.robot.automation;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.drive.DriveSubsystem;
-import frc.robot.utils.CowboyUtils;
-import frc.robot.RobotState;
-import frc.robot.RobotConstants.ScoringConstants;
-import frc.robot.RobotConstants.ScoringConstants.Setpoints;
-
-import java.util.function.Supplier;
-
-import org.littletonrobotics.junction.Logger;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathConstraints;
-import com.pathplanner.lib.util.FlippingUtil;
+
 
 public class AutomatedScoring {
 

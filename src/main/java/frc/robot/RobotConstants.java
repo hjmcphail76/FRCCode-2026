@@ -50,64 +50,13 @@ public final class RobotConstants {
                 static {
                         REEF_SIDE_POSES = new Pose2d[6][3];
 
-                        // Reef 1 LEFT
+                        // Test Pose 1
                         REEF_SIDE_POSES[0][0] = new Pose2d(3.146, 4.191, new Rotation2d(Math.toRadians(0)));
-
-                        // Reef 1 ALGAE
-                        REEF_SIDE_POSES[0][1] = new Pose2d(3.146, 4.025, new Rotation2d(Math.toRadians(0)));
-
-                        // Reef 1 RIGHT
-                        REEF_SIDE_POSES[0][2] = new Pose2d(3.146, 3.859, new Rotation2d(Math.toRadians(0)));
-
-                        // Reef 2 LEFT
-                        REEF_SIDE_POSES[1][0] = new Pose2d(3.659, 2.947, new Rotation2d(Math.toRadians(60)));
-
-                        // Reef 2 ALGAE
-                        REEF_SIDE_POSES[1][1] = new Pose2d(3.812, 2.861, new Rotation2d(Math.toRadians(60)));
-
-                        // Reef 2 RIGHT
-                        REEF_SIDE_POSES[1][2] = new Pose2d(3.978, 2.801, new Rotation2d(Math.toRadians(60)));
-
-                        // Reef 3 LEFT
-                        REEF_SIDE_POSES[2][0] = new Pose2d(5.009, 2.781, new Rotation2d(Math.toRadians(120)));
-
-                        // Reef 3 ALGAE
-                        REEF_SIDE_POSES[2][1] = new Pose2d(5.168, 2.868, new Rotation2d(Math.toRadians(120)));
-
-                        // Reef 3 RIGHT
-                        REEF_SIDE_POSES[2][2] = new Pose2d(5.302, 2.954, new Rotation2d(Math.toRadians(120)));
-
-                        // Reef 4 LEFT
-                        REEF_SIDE_POSES[3][0] = new Pose2d(5.827, 3.839, new Rotation2d(Math.toRadians(180)));
-
-                        // Reef 4 ALGAE
-                        REEF_SIDE_POSES[3][1] = new Pose2d(5.827, 4.025, new Rotation2d(Math.toRadians(180)));
-
-                        // Reef 4 RIGHT
-                        REEF_SIDE_POSES[3][2] = new Pose2d(5.827, 4.171, new Rotation2d(Math.toRadians(180)));
-
-                        // Reef 5 LEFT
-                        REEF_SIDE_POSES[4][0] = new Pose2d(5.308, 5.103, new Rotation2d(Math.toRadians(-120)));
-
-                        // Reef 5 ALGAE
-                        REEF_SIDE_POSES[4][1] = new Pose2d(5.155, 5.183, new Rotation2d(Math.toRadians(-120)));
-
-                        // RIGHT
-                        REEF_SIDE_POSES[4][2] = new Pose2d(5.022, 5.262, new Rotation2d(Math.toRadians(-120)));
-
-                        // Reef 6 LEFT
-                        REEF_SIDE_POSES[5][0] = new Pose2d(3.965, 5.269, new Rotation2d(Math.toRadians(-60)));
-
-                        // Reef 6 ALGAE
-                        REEF_SIDE_POSES[5][1] = new Pose2d(3.825, 5.183, new Rotation2d(Math.toRadians(-60)));
-
-                        // Reef 6 RIGHT
-                        REEF_SIDE_POSES[5][2] = new Pose2d(3.665, 5.096, new Rotation2d(Math.toRadians(-60)));
                 }
 
-                public static final List<Pose2d> HP_POSES = List.of(
-                                new Pose2d(1.11, 7.125, new Rotation2d(Units.degreesToRadians(125))), // L
-                                new Pose2d(1.007, 0.884, new Rotation2d(Units.degreesToRadians(-125))));// R
+                // public static final List<Pose2d> HP_POSES = List.of(
+                //                 new Pose2d(1.11, 7.125, new Rotation2d(Units.degreesToRadians(125))),
+                //                 new Pose2d(1.007, 0.884, new Rotation2d(Units.degreesToRadians(-125))));
 
         }
 
@@ -126,7 +75,7 @@ public final class RobotConstants {
 
                 // Driving Parameters - Note that these are not the maximum capable speeds of
                 // the robot, rather the allowed maximum speeds
-                public static final double MAX_SPEED_METERS_PER_SECOND = 6.0; // 4.42; //4.8;
+                public static final double MAX_SPEED_METERS_PER_SECOND = 6.0;
                 public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 2 * Math.PI; // radians per second
 
                 public static final double DIRECTION_SLEW_RATE = 25;
@@ -135,20 +84,20 @@ public final class RobotConstants {
 
                 // Chassis configuration
 
-                public static final double DRIVE_BASE_RADIUS_METERS = Units.inchesToMeters(17.5); // measurement from
+                public static final double DRIVE_BASE_RADIUS_METERS = Units.inchesToMeters(15.38); // measurement from
                                                                                                   // center point of
                                                                                                   // robot
                 // to the
                 // center of one of the wheels. (use the
                 // CAD)
 
-                public static final double LEFT_RIGHT_DISTANCE_METERS = Units.inchesToMeters(24.750000); // Distance
+                public static final double LEFT_RIGHT_DISTANCE_METERS = Units.inchesToMeters(21.750000); // Distance
                                                                                                          // between
                                                                                                          // centers of
                                                                                                          // right
                 // and left wheels on robot
 
-                public static final double FRONT_BACK_DISTANCE_METERS = Units.inchesToMeters(24.750000);// Distance
+                public static final double FRONT_BACK_DISTANCE_METERS = Units.inchesToMeters(21.750000);// Distance
                                                                                                         // between
                                                                                                         // front and
                                                                                                         // back
@@ -165,76 +114,30 @@ public final class RobotConstants {
                 public static final boolean FIELD_RELATIVE = true;
         }
 
-        public static final class ElevatorConstants {
-                public static final double ELEVATOR_MAX_HEIGHT = 71;
-                public static final double ELEVATOR_MIN_HEIGHT = 2;
-
-                public static final class HeightSetpoints {
-                        public static final double HOME = 0.5;
-                        public static final double HP = 12.4;
-
-                        public static final class Coral {
-                                public static final double L1 = 8.15;
-                                public static final double L2 = 12;
-                                public static final double L3 = 17.35;
-                        }
-
-                        public static final class Algae {
-                                public static final double L2 = 8.4;
-                                public static final double L3 = 17.2;
-                        }
-
-                        public static final class SimConstants {
-                                public static final double HOME = 0;
-                                public static final double HP = .35;
-                                public static final double L1 = 0.2;
-                                public static final double L2 = 0.3;
-                                public static final double L3 = 0.55;
-                        }
-                }
-
-        }
-
-        public static final class ClawConstants {
-                public static final double INTAKE_CORAL_SPEED = 0.5;
-                public static final double OUTTAKE_CORAL_SPEED = -1;
-                public static final double INTAKE_ALGAE_SPEED = -0.75;
-                public static final double OUTTAKE_ALGAE_SPEED = 1;
-        }
-
-        public static final class WristConstants {
-                public static final double WRIST_MIN_ANGLE = 0.0;
-                public static final double ELEVATOR_MAX_ANGLE = 30.0;
-
-                public static final class AngleSetpoints {
-                        public static final double HOME = -5;
-                        public static final double HP = -13.0;
-
-                        public static final class Coral {
-                                public static final double L1 = -9;
-                                public static final double L2 = -3;
-                                public static final double L3 = -7;
-                        }
-
-                        public static final class Algae {
-                                public static final double L2 = 5;
-                                public static final double L3 = 8.5;
-                        }
-
-                        public static final class SimConstants {
-                                public static final double HOME = 0;
-                                public static final double HP = 0;
-                                public static final double L1 = 0;
-                                public static final double L2 = 0;
-                                public static final double L3 = 0;
-                        }
-                }
-
-                public static final double MAX_MOTOR_RPM = 10000.0;
-                public static final double MAX_MOTOR_ACCELERATION = 4000.0;
-        }
-
         public static final class SwerveModuleConstants {
+                public enum DrivingRatios {
+                        // Enum constants for number of teeth
+                        R1(12),
+                        R2(14),
+                        R3(16);
+                        private final int ratioValue;
+                        DrivingRatios(int ratioValue) {
+                                this.ratioValue = ratioValue;
+                        }
+                        public int getValue() {
+                                return ratioValue;
+                        }
+                }
+
+                public static final DrivingRatios DRIVING_RATIO = DrivingRatios.R2;
+
+                public static final double WHEEL_DIAMETER_METERS = 0.1016;
+
+                public static final double TURNING_MOTOR_REDUCTION = 26; // Ratio between internal relative
+                                                                         // encoder and
+                                                                         // the absolute encoder
+
+
 
                 public static final double TRANSLATION_P = 1.0;
                 public static final double ROT_MOTION_P = 0.0;
@@ -247,15 +150,15 @@ public final class RobotConstants {
 
                 public static final double FREE_SPEED_RPM = 5676;
 
-                public static final int DRIVING_MOTOR_PINION_TEETH = 16;
-
                 // public static final boolean TURNING_ENCODER_INVERTED = false;
 
                 public static final double DRIVING_MOTOR_FREE_SPEED_RPS = FREE_SPEED_RPM / 60;
-                public static final double WHEEL_DIAMETER_METERS = 0.1016;
+                
                 public static final double WHEEL_CIRCUMFERENCE_METERS = WHEEL_DIAMETER_METERS * Math.PI;
-                public static final double DRIVING_MOTOR_REDUCTION = (45.0 * 17 * 50)
-                                / (DRIVING_MOTOR_PINION_TEETH * 15 * 27);
+
+                public static final double DRIVING_MOTOR_REDUCTION = (54.0 * 25 * 30)
+                                / (DRIVING_RATIO.getValue() * 32 * 15);
+
                 public static final double DRIVE_WHEEL_FREE_SPEED_RPS = (DRIVING_MOTOR_FREE_SPEED_RPS
                                 * WHEEL_CIRCUMFERENCE_METERS) / DRIVING_MOTOR_REDUCTION;
 
@@ -263,10 +166,6 @@ public final class RobotConstants {
                                 * Math.PI) / DRIVING_MOTOR_REDUCTION; // meters, per rotation
                 public static final double DRIVING_ENCODER_VELOCITY_FACTOR_METERS_PER_SECOND_PER_RPM = ((WHEEL_DIAMETER_METERS
                                 * Math.PI) / DRIVING_MOTOR_REDUCTION) / 60.0; // meters per second, per RPM
-
-                public static final double TURNING_MOTOR_REDUCTION = 12.8; // Ratio between internal relative
-                                                                           // encoder and
-                                                                           // the absolute encoder
 
                 public static final double TURNING_ENCODER_POSITION_FACTOR_RADIANS_PER_ROTATION = (2 * Math.PI)
                                 / TURNING_MOTOR_REDUCTION; // radians, per rotation
@@ -302,6 +201,11 @@ public final class RobotConstants {
         public static interface PortConstants {
 
                 public static class CAN {
+                        public static final int FRONT_LEFT_CANCODER = 1;
+                        public static final int FRONT_RIGHT_CANCODER = 2;
+                        public static final int REAR_LEFT_CANCODER = 3;
+                        public static final int REAR_RIGHT_CANCODER = 4;
+
                         public static final int FRONT_LEFT_DRIVING = 5;
                         public static final int REAR_LEFT_DRIVING = 7;
                         public static final int FRONT_RIGHT_DRIVING = 6;
@@ -311,19 +215,6 @@ public final class RobotConstants {
                         public static final int REAR_LEFT_TURNING = 11;
                         public static final int FRONT_RIGHT_TURNING = 10;
                         public static final int REAR_RIGHT_TURNING = 12;
-
-                        public static final int FRONT_LEFT_STEERING = 1;
-                        public static final int FRONT_RIGHT_STEERING = 2;
-                        public static final int REAR_LEFT_STEERING = 3;
-                        public static final int REAR_RIGHT_STEERING = 4;
-
-                        public static final int ELEVATOR_MOTOR_1 = 13;
-                        public static final int ELEVATOR_MOTOR_2 = 14;
-
-                        public static final int WRIST_MOTOR = 15;
-
-                        public static final int CLAW_MOTOR_1 = 16;
-                        public static final int CLAW_MOTOR_2 = 17;
 
                         public static final int PDH = 18;
 

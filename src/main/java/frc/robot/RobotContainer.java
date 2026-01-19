@@ -86,19 +86,19 @@ public class RobotContainer {
                                 moduleIOs = new ModuleIO[] {
                                                 new ModuleIOSpark(RobotConstants.PortConstants.CAN.FRONT_LEFT_DRIVING,
                                                                 RobotConstants.PortConstants.CAN.FRONT_LEFT_TURNING,
-                                                                RobotConstants.PortConstants.CAN.FRONT_LEFT_STEERING,
+                                                                RobotConstants.PortConstants.CAN.FRONT_LEFT_CANCODER,
                                                                 false),
                                                 new ModuleIOSpark(RobotConstants.PortConstants.CAN.FRONT_RIGHT_DRIVING,
                                                                 RobotConstants.PortConstants.CAN.FRONT_RIGHT_TURNING,
-                                                                RobotConstants.PortConstants.CAN.FRONT_RIGHT_STEERING,
+                                                                RobotConstants.PortConstants.CAN.FRONT_RIGHT_CANCODER,
                                                                 false),
                                                 new ModuleIOSpark(RobotConstants.PortConstants.CAN.REAR_LEFT_DRIVING,
                                                                 RobotConstants.PortConstants.CAN.REAR_LEFT_TURNING,
-                                                                RobotConstants.PortConstants.CAN.REAR_LEFT_STEERING,
+                                                                RobotConstants.PortConstants.CAN.REAR_LEFT_CANCODER,
                                                                 false),
                                                 new ModuleIOSpark(RobotConstants.PortConstants.CAN.REAR_RIGHT_DRIVING,
                                                                 RobotConstants.PortConstants.CAN.REAR_RIGHT_TURNING,
-                                                                RobotConstants.PortConstants.CAN.REAR_RIGHT_STEERING,
+                                                                RobotConstants.PortConstants.CAN.REAR_RIGHT_CANCODER,
                                                                 false),
                                 };
                                 driveSubsystem = new DriveSubsystem(moduleIOs, new GyroIONAVX());
@@ -108,7 +108,6 @@ public class RobotContainer {
                                 break;
 
                         case SIM:
-
                                 moduleIOs = new ModuleIO[] {
                                                 new ModuleIOSim(),
                                                 new ModuleIOSim(),
@@ -148,16 +147,6 @@ public class RobotContainer {
                 configureButtonBindings();
 
                 try {
-                        dynamicAutoRegistry = new DynamicAutoRegistry();
-
-                        dynamicAutoRegistry.registerCommand(new AutoCommandDef("Example Command",
-                                        List.of(new AutoParamDef("Example Param", 0)), params -> Commands.deferredProxy(
-                                                        // this is the command factory
-                                                        () -> AutomatedScoring.exampleCommandDynamicAuton(
-                                                                        params.get("Example Param")))));
-
-                        dynamicAutoRegistry.publishCommands();
-
                         pdp = new PowerDistribution(CAN.PDH, ModuleType.kRev);
 
                         autoPPChooser = AutoBuilder.buildAutoChooser("Test Auto");
@@ -179,11 +168,21 @@ public class RobotContainer {
         }
 
         private void createNamedCommands() {
-                // Add commands here to be able to execute in auto through pathplanner
+                // Add commands here to be able to execute in auto
 
                 NamedCommands.registerCommand("Example", new RunCommand(() -> {
                         System.out.println("Running...");
                 }));
+
+                dynamicAutoRegistry = new DynamicAutoRegistry();
+
+                dynamicAutoRegistry.registerCommand(new AutoCommandDef("Example Command",
+                                List.of(new AutoParamDef("Example Param", 0)), params -> Commands.deferredProxy(
+                                                // this is the command factory
+                                                () -> AutomatedScoring.exampleCommandDynamicAuton(
+                                                                params.get("Example Param")))));
+
+                dynamicAutoRegistry.publishCommands();
 
         }
 

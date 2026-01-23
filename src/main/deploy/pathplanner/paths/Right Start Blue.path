@@ -52,11 +52,11 @@
         "y": 2.1238214285714285
       },
       "prevControl": {
-        "x": 6.455999999999999,
+        "x": 7.523309523809525,
         "y": 2.1238214285714285
       },
       "nextControl": {
-        "x": 8.023309523809525,
+        "x": 8.02330952380952,
         "y": 2.1238214285714285
       },
       "isLocked": false,
@@ -65,15 +65,15 @@
     {
       "anchor": {
         "x": 5.818940476190477,
-        "y": 2.307380952380953
+        "y": 2.5125357142857148
       },
       "prevControl": {
         "x": 7.492197282100535,
-        "y": 2.3812011055828686
+        "y": 2.5863558674876304
       },
       "nextControl": {
         "x": 5.084702380952382,
-        "y": 2.274988095238095
+        "y": 2.480142857142857
       },
       "isLocked": false,
       "linkedName": null
@@ -81,41 +81,57 @@
     {
       "anchor": {
         "x": 3.475857142857144,
-        "y": 2.307380952380953
+        "y": 2.5125357142857148
       },
       "prevControl": {
         "x": 4.499335664434112,
-        "y": 2.2616899469534095
+        "y": 2.4668447088581713
       },
       "nextControl": {
         "x": 2.26652380952381,
-        "y": 2.3613690476190485
+        "y": 2.5665238095238103
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.4890952380952394,
-        "y": 3.6786785714285717
+        "x": 2.212535714285715,
+        "y": 2.5125357142857148
       },
       "prevControl": {
-        "x": 2.147750000000001,
-        "y": 3.851440476190477
+        "x": 2.8604077949453117,
+        "y": 2.7221413874402915
+      },
+      "nextControl": {
+        "x": 1.8454166666666674,
+        "y": 2.3937619047619045
+      },
+      "isLocked": false,
+      "linkedName": "Right Shoot Blue"
+    },
+    {
+      "anchor": {
+        "x": 1.5538809523809531,
+        "y": 3.70027380952381
+      },
+      "prevControl": {
+        "x": 3.1087380952380967,
+        "y": 3.9378214285714286
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right Shoot Blue"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
     {
       "waypointRelativePos": 1,
-      "rotationDegrees": -44.2361015390701
+      "rotationDegrees": -133.22853025996596
     },
     {
       "waypointRelativePos": 2,
-      "rotationDegrees": -170.2833141822149
+      "rotationDegrees": 179.23610153906995
     },
     {
       "waypointRelativePos": 3,
@@ -128,6 +144,10 @@
     {
       "waypointRelativePos": 5,
       "rotationDegrees": 45.85509739626686
+    },
+    {
+      "waypointRelativePos": 6,
+      "rotationDegrees": 32.670250364927675
     }
   ],
   "constraintZones": [],
@@ -143,13 +163,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 178.63607246839712
+    "rotation": -179.1574757392596
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -41.5663696375496
+    "rotation": -132.35745470593528
   },
   "useDefaultConstraints": false
 }

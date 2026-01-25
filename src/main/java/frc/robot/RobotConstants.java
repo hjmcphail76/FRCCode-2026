@@ -297,7 +297,7 @@ public final class RobotConstants {
                                                                                                                 0),
                                                                                                 Units.degreesToRadians(
                                                                                                                 0)))),
-                                                SimCameraConfig.ARDUCAM_OV9281_55),
+                                                SimCameraConfig.ARDUCAM_OV9281_45),
                                 // Front Right
                                 new AprilTagCameraConfig(
                                                 new VisionSource(
@@ -317,26 +317,8 @@ public final class RobotConstants {
                                                                                                                 -27.5),
                                                                                                 Units.degreesToRadians(
                                                                                                                 10)))),
-                                                SimCameraConfig.ARDUCAM_OV9281_55),
-                                // Back Right
-                                new AprilTagCameraConfig(
-                                                new VisionSource(
-                                                                "backLeftCamera", new Transform3d(
-                                                                                new Translation3d(
-                                                                                                Units.inchesToMeters(
-                                                                                                                -4.361060), // forward+
-                                                                                                Units.inchesToMeters(
-                                                                                                                9.375080), // left+
-                                                                                                Units.inchesToMeters(
-                                                                                                                24.57)), // up+
-                                                                                new Rotation3d(
-                                                                                                Units.degreesToRadians(
-                                                                                                                0),
-                                                                                                Units.degreesToRadians(
-                                                                                                                -5),
-                                                                                                Units.degreesToRadians(
-                                                                                                                180 + 5)))),
-                                                SimCameraConfig.ARDUCAM_OV9281_55));
+                                                SimCameraConfig.ARDUCAM_OV9281_45)
+                                );
 
                 public static final Transform3d[] CAMERA_POSITIONS = {
                                 new Transform3d(

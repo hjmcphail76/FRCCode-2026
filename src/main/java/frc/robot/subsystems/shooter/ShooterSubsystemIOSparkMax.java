@@ -1,5 +1,12 @@
 package frc.robot.subsystems.shooter;
 
-public class ShooterSubsystemIOSparkMax {
+import frc.robot.subsystems.shooter.ShooterSubsystemIO.ShooterSubsystemIOInputs;
+
+public class ShooterSubsystemIOSparkMax implements ShooterSubsystemIO {
     
+    @Override
+    public void updateInputs(ShooterSubsystemIOInputs inputs) {
+        inputs.motorRMP = 0;
+        inputs.motorTempC = 0;
+    }
 }

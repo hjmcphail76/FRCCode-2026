@@ -23,6 +23,17 @@ public class RobotState {
     private static final Queue<TimestampedPose> questMeasurements = new LinkedBlockingQueue<>(20);
     private static final Queue<TimestampedPose> aprilTagCameraMeasurements = new LinkedBlockingQueue<>(20);
 
+    public static enum ShooterState{
+        READY,
+        OFF,
+        MANUAL
+    }
+
+    public static enum IntakePosition{
+        DEPLOYED,
+        RETRACTED
+    }
+
     public static enum AutoMode {
         PP_AUTO,
         DYNAMIC_AUTO

@@ -18,28 +18,28 @@ public class IntakeSubsystemIOSparkMax implements IntakeSubsystemIO {
     SparkMaxConfig intakeMotorConfig;
     SparkMaxConfig deploymentMotorConfig;
 
-    public IntakeSubsystemIOSparkMax(){
-    intakeMotor = new SparkMax(0, MotorType.kBrushless);
-    deploymentMotor = new SparkMax(0, MotorType.kBrushless);
+    public IntakeSubsystemIOSparkMax() {
+        intakeMotor = new SparkMax(0, MotorType.kBrushless);
+        deploymentMotor = new SparkMax(0, MotorType.kBrushless);
 
-    SparkMaxConfig intakeMotorConfig = new SparkMaxConfig();
-    intakeMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kBrake);
-    intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    
-}
+        SparkMaxConfig intakeMotorConfig = new SparkMaxConfig();
+        intakeMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kBrake);
+        intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    }
 
     @Override
-    public void setPercentSpeed(double percent){
+    public void setPercentSpeed(double percent) {
         intakeMotor.set(percent);
     }
 
     @Override
-    public void setRMP(double rpm){
-        
+    public void setRMP(double rpm) {
+
     }
 
     @Override
-    public void setIntakePosition(IntakePositions state){
+    public void setIntakePosition(IntakePositions state) {
 
     }
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.photonvision.simulation.VisionSystemSim;
 
+import com.ctre.phoenix6.signals.RGBWColor;
 import com.pathplanner.lib.path.PathConstraints;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
@@ -38,7 +39,7 @@ public final class RobotConstants {
 
         public static final class ScoringConstants {
 
-                public static final Pose2d BLUE_ALLIANCE_HUB = new Pose2d(4.630,4.040,new Rotation2d());
+                public static final Pose2d BLUE_ALLIANCE_HUB = new Pose2d(4.630, 4.040, new Rotation2d());
 
                 public static final Pose2d[][] REEF_SIDE_POSES;
 
@@ -50,8 +51,8 @@ public final class RobotConstants {
                 }
 
                 // public static final List<Pose2d> HP_POSES = List.of(
-                //                 new Pose2d(1.11, 7.125, new Rotation2d(Units.degreesToRadians(125))),
-                //                 new Pose2d(1.007, 0.884, new Rotation2d(Units.degreesToRadians(-125))));
+                // new Pose2d(1.11, 7.125, new Rotation2d(Units.degreesToRadians(125))),
+                // new Pose2d(1.007, 0.884, new Rotation2d(Units.degreesToRadians(-125))));
 
         }
 
@@ -80,8 +81,8 @@ public final class RobotConstants {
                 // Chassis configuration
 
                 public static final double DRIVE_BASE_RADIUS_METERS = Units.inchesToMeters(15.38); // measurement from
-                                                                                                  // center point of
-                                                                                                  // robot
+                                                                                                   // center point of
+                                                                                                   // robot
                 // to the
                 // center of one of the wheels. (use the
                 // CAD)
@@ -115,10 +116,13 @@ public final class RobotConstants {
                         R1(12),
                         R2(14),
                         R3(16);
+
                         private final int ratioValue;
+
                         DrivingRatios(int ratioValue) {
                                 this.ratioValue = ratioValue;
                         }
+
                         public int getValue() {
                                 return ratioValue;
                         }
@@ -131,8 +135,6 @@ public final class RobotConstants {
                 public static final double TURNING_MOTOR_REDUCTION = 26; // Ratio between internal relative
                                                                          // encoder and
                                                                          // the absolute encoder
-
-
 
                 public static final double TRANSLATION_P = 1.0;
                 public static final double ROT_MOTION_P = 0.0;
@@ -148,7 +150,7 @@ public final class RobotConstants {
                 // public static final boolean TURNING_ENCODER_INVERTED = false;
 
                 public static final double DRIVING_MOTOR_FREE_SPEED_RPS = FREE_SPEED_RPM / 60;
-                
+
                 public static final double WHEEL_CIRCUMFERENCE_METERS = WHEEL_DIAMETER_METERS * Math.PI;
 
                 public static final double DRIVING_MOTOR_REDUCTION = (54.0 * 25 * 30)
@@ -211,7 +213,12 @@ public final class RobotConstants {
                         public static final int FRONT_RIGHT_TURNING = 10;
                         public static final int REAR_RIGHT_TURNING = 12;
 
-                        public static final int PDH = 18;
+                        public static final int PDH = 13;
+
+                        public static final int LIGHT_PORT = 14;
+
+                        public static final int INTAKE_MOTOR = 15;
+                        public static final int INTAKE_DEPLOYMENT_MOTOR = 16;
 
                 }
 
@@ -224,8 +231,11 @@ public final class RobotConstants {
 
                         public static final int DRIVE_COMMAND_X_AXIS = 0;
                         public static final int DRIVE_COMMAND_Y_AXIS = 1;
-                        public static final int DRIVE_COMMAND_ROT_AXIS = CowboyUtils.isSim() ? 4 : 2; // 2 for the flight controller, 4 for
-                                                                            // xbox/gamepad
+                        public static final int DRIVE_COMMAND_ROT_AXIS = CowboyUtils.isSim() ? 4 : 2; // 2 for the
+                                                                                                      // flight
+                                                                                                      // controller, 4
+                                                                                                      // for
+                        // xbox/gamepad
 
                         // Manual control axis for operator
                         public static final int ELEVATOR_MANUAL_CONTROL = 1;
@@ -261,8 +271,6 @@ public final class RobotConstants {
                         QUEST_NAV_ONLY,
                         HYBRID
                 }
-
-                public static final int[] REEF_IDS = { 6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22 };
 
                 public static final record AprilTagCameraConfig(VisionSource source, SimCameraConfig simConfig) {
                 }
@@ -317,8 +325,7 @@ public final class RobotConstants {
                                                                                                                 -27.5),
                                                                                                 Units.degreesToRadians(
                                                                                                                 10)))),
-                                                SimCameraConfig.ARDUCAM_OV9281_45)
-                                );
+                                                SimCameraConfig.ARDUCAM_OV9281_45));
 
                 public static final Transform3d[] CAMERA_POSITIONS = {
                                 new Transform3d(
@@ -352,20 +359,7 @@ public final class RobotConstants {
                                                                                                // face up we
                                                                                                // need - ;)
                                                                 Units.degreesToRadians(0))),
-                                // Back Left
-                                new Transform3d(
-                                                new Translation3d(
-                                                                Units.inchesToMeters(-4.361060), // forward+
-                                                                Units.inchesToMeters(9.375080), // left+
-                                                                Units.inchesToMeters(24.57)), // up+
-                                                new Rotation3d(
-                                                                Units.degreesToRadians(0),
-                                                                Units.degreesToRadians(-5), // Note, these are all
-                                                                                            // counter clockwise so
-                                                                                            // to
-                                                                                            // face up we
-                                                                                            // need - ;)
-                                                                Units.degreesToRadians(180 + 5))) };
+                };
         }
 
         public static final class QuestNavConstants {
@@ -396,6 +390,26 @@ public final class RobotConstants {
                         ALGAE,
                         RIGHT
                 }
+        }
+
+        public static final class LEDConstants {
+                public static final int LED_COUNT = 300;
+
+                public static enum AnimationTypes {
+                        ColorFlow,
+                        Fire,
+                        Larson,
+                        Rainbow,
+                        RgbFade,
+                        SingleFade,
+                        Strobe,
+                        Twinkle,
+                        TwinkleOff,
+                        SetAll,
+                        NONE
+                }
+
+                public static final RGBWColor ANIMATION_COLOR = new RGBWColor(255,0,0);
         }
 
         public static final class SubsystemEnabledConstants {

@@ -42,9 +42,21 @@ import frc.robot.subsystems.drive.ModuleIOSpark;
 import frc.robot.subsystems.drive.gyro.GyroIO;
 import frc.robot.subsystems.drive.gyro.GyroIONAVX;
 import frc.robot.subsystems.drive.gyro.GyroIOSim;
+import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.intake.IntakeSubsystemIO;
+import frc.robot.subsystems.intake.IntakeSubsystemIOSim;
+import frc.robot.subsystems.intake.IntakeSubsystemIOSparkMax;
+import frc.robot.subsystems.led.LEDSubsystem;
+import frc.robot.subsystems.led.LEDSubsystemIO;
+import frc.robot.subsystems.led.LEDSubsystemIOCandle;
+import frc.robot.subsystems.led.LEDSubsystemIOSim;
 import frc.robot.subsystems.questnav.QuestNavIO;
 import frc.robot.subsystems.questnav.QuestNavIOReal;
 import frc.robot.subsystems.questnav.QuestNavSubsystem;
+import frc.robot.subsystems.shooter.ShooterSubsystem;
+import frc.robot.subsystems.shooter.ShooterSubsystemIO;
+import frc.robot.subsystems.shooter.ShooterSubsystemIOSim;
+import frc.robot.subsystems.shooter.ShooterSubsystemIOSparkMax;
 import frc.robot.subsystems.vision.VisionSubsystem;
 import frc.robot.automation.AutomationTabletInput;
 import frc.robot.RobotConstants.PortConstants;
@@ -61,6 +73,9 @@ public class RobotContainer {
         public final VisionSubsystem visionSubsystem = new VisionSubsystem();
         public final QuestNavSubsystem questNavSubsystem;
         public final DriveSubsystem driveSubsystem;
+        public final IntakeSubsystem intakeSubsystem;
+        public final ShooterSubsystem shooterSubsystem;
+        public final LEDSubsystem ledSubsystem;
 
         private final Joystick driveJoystick = new Joystick(RobotConstants.PortConstants.Controller.DRIVE_JOYSTICK);
         private final Joystick operatorJoystick = new Joystick(
@@ -106,6 +121,12 @@ public class RobotContainer {
 
                                 questNavSubsystem = new QuestNavSubsystem(new QuestNavIOReal());
 
+                                intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIOSparkMax());
+
+                                shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIOSparkMax());
+
+                                ledSubsystem = new LEDSubsystem(new LEDSubsystemIOCandle());
+
                                 break;
 
                         case SIM:
@@ -119,6 +140,12 @@ public class RobotContainer {
                                 driveSubsystem = new DriveSubsystem(moduleIOs, new GyroIOSim());
 
                                 questNavSubsystem = new QuestNavSubsystem(new QuestNavIOReal());
+
+                                intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIOSim());
+
+                                shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIOSim());
+
+                                ledSubsystem = new LEDSubsystem(new LEDSubsystemIOSim());
 
                                 break;
 
@@ -138,6 +165,18 @@ public class RobotContainer {
                                 });
 
                                 questNavSubsystem = new QuestNavSubsystem(new QuestNavIO() {
+                                });
+
+                                intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIO() {
+                                        
+                                });
+
+                                shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIO() {
+                                        
+                                });
+
+                                ledSubsystem = new LEDSubsystem(new LEDSubsystemIO() {
+                                        
                                 });
 
                                 break;

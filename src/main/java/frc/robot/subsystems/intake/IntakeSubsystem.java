@@ -13,6 +13,10 @@ public class IntakeSubsystem extends SubsystemBase {
         this.io = io;
     }
 
+    public void turnIntakeOn(){
+        io.setPercentSpeed(.5);
+    }
+
     @Override
     public void periodic() {
         io.updateInputs(inputs);

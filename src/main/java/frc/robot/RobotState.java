@@ -12,24 +12,27 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.littletonrobotics.junction.AutoLogOutput;
 
 public class RobotState {
-    public static Boolean isAntiTippingEnabled = true;
-    public static Boolean isAutoAlignActive = false;
-    public static boolean canRotate = CowboyUtils.isSim() ? true : false; //easier to read than just T/F
+    public static boolean isAntiTippingEnabled = true;
+    public static boolean isAutoAlignActive = false;
+    public static boolean canRotate = CowboyUtils.isSim();
     public static boolean xLocked = false;
     public static Pose2d robotPose = new Pose2d();
     @AutoLogOutput
-    public static Boolean isQuestNavPoseReset = false;
+    public static boolean isQuestNavPoseReset = false;
     @AutoLogOutput
     private static final Queue<TimestampedPose> questMeasurements = new LinkedBlockingQueue<>(20);
     private static final Queue<TimestampedPose> aprilTagCameraMeasurements = new LinkedBlockingQueue<>(20);
 
-    public static enum ShooterState{
+    public static ShooterStates shooterState = ShooterStates.OFF;
+    public static IntakePositions intakePosition = IntakePositions.RETRACTED;
+
+    public static enum ShooterStates{
         READY,
         OFF,
         MANUAL
     }
 
-    public static enum IntakePosition{
+    public static enum IntakePositions{
         DEPLOYED,
         RETRACTED
     }

@@ -5,6 +5,7 @@ import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 
+import frc.robot.RobotConstants.PortConstants;
 import frc.robot.RobotState.IntakePositions;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -19,8 +20,8 @@ public class IntakeSubsystemIOSparkMax implements IntakeSubsystemIO {
     SparkMaxConfig deploymentMotorConfig;
 
     public IntakeSubsystemIOSparkMax() {
-        intakeMotor = new SparkMax(0, MotorType.kBrushless);
-        deploymentMotor = new SparkMax(0, MotorType.kBrushless);
+        intakeMotor = new SparkMax(PortConstants.CAN.INTAKE_MOTOR, MotorType.kBrushless);
+        deploymentMotor = new SparkMax(PortConstants.CAN.INTAKE_DEPLOYMENT_MOTOR, MotorType.kBrushless);
 
         SparkMaxConfig intakeMotorConfig = new SparkMaxConfig();
         intakeMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kBrake);

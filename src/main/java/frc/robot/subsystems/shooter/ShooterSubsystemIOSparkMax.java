@@ -1,12 +1,39 @@
 package frc.robot.subsystems.shooter;
 
-import frc.robot.subsystems.shooter.ShooterSubsystemIO.ShooterSubsystemIOInputs;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
+import com.revrobotics.spark.SparkClosedLoopController;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkMaxConfig;
+
+import frc.robot.RobotConstants.PortConstants;
 
 public class ShooterSubsystemIOSparkMax implements ShooterSubsystemIO {
-    
+    SparkMax shooterMotor;
+    SparkMaxConfig shooterMotorConfig;
+    SparkClosedLoopController closedLoopController;
+
+    public ShooterSubsystemIOSparkMax(){
+        shooterMotor = new SparkMax(PortConstants.CAN.SHOOTER_MOTOR, MotorType.kBrushless);
+        shooterMotorConfig = new SparkMaxConfig();
+        shooterMotorConfig.closedLoop.pid(1, 0, 0);
+
+        closedLoopController = shooterMotor.getClosedLoopController();
+    }
+
+    @Override
+    public void setRMP(double rpm){
+        closedLoopController.setSetpoint(rpm, ControlType.kVelocity);
+    }
+
+    @Override
+    public void setPercentSpeed(double speed){
+        closedLoopController.setSetpoint(speed, ControlType.kDutyCycle);
+    }
+
     @Override
     public void updateInputs(ShooterSubsystemIOInputs inputs) {
-        inputs.motorRMP = 0;
-        inputs.motorTempC = 0;
+        inputs.motorRMP = shooterMotor.getEncoder().getVelocity();
+        inputs.motorTempC = shooterMotor.getMotorTemperature();
     }
 }

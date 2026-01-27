@@ -1,9 +1,14 @@
 package frc.robot.subsystems.shooter;
 
-import frc.robot.subsystems.shooter.ShooterSubsystemIO.ShooterSubsystemIOInputs;
-
 public class ShooterSubsystemIOSim implements ShooterSubsystemIO {
     
+    public void setPercentSpeed(double percent){
+    }
+
+    public void setRMP(double rpm){
+
+    }
+
     @Override
     public void updateInputs(ShooterSubsystemIOInputs inputs) {
         inputs.motorRMP = 0;

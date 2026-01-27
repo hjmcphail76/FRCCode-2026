@@ -26,7 +26,7 @@ public class LEDSubsystemIOCandle implements LEDSubsystemIO {
     private AnimationTypes currentAnimation = AnimationTypes.NONE;
 
     public LEDSubsystemIOCandle() {
-        candle = new CANdle(PortConstants.CAN.LIGHT_PORT, "rio");
+        candle = new CANdle(PortConstants.CAN.CANDLE, "rio");
         candleConfig = new CANdleConfiguration();
         candleConfig.LED.StripType = StripTypeValue.RGB;
 

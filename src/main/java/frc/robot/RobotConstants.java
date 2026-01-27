@@ -215,10 +215,12 @@ public final class RobotConstants {
 
                         public static final int PDH = 13;
 
-                        public static final int LIGHT_PORT = 14;
+                        public static final int CANDLE = 14;
 
                         public static final int INTAKE_MOTOR = 15;
                         public static final int INTAKE_DEPLOYMENT_MOTOR = 16;
+
+                        public static final int SHOOTER_MOTOR = 17;
 
                 }
 

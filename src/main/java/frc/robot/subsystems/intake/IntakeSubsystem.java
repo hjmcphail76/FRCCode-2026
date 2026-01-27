@@ -3,7 +3,6 @@ package frc.robot.subsystems.intake;
 import org.littletonrobotics.junction.Logger;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.shooter.ShooterSubsystemIO.ShooterSubsystemIOInputs;
 
 public class IntakeSubsystem extends SubsystemBase {
     public IntakeSubsystemIO io;
@@ -15,6 +14,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void turnIntakeOn(){
         io.setPercentSpeed(.5);
+    }
+
+    public void turnIntakeOff(){
+        io.setPercentSpeed(0);
     }
 
     @Override

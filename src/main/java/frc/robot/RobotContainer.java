@@ -14,6 +14,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
@@ -63,10 +64,13 @@ import frc.robot.RobotConstants.PortConstants;
 import frc.robot.utils.CowboyUtils;
 import frc.robot.utils.QuestCalibration;
 import frc.robot.utils.CowboyUtils.RobotModes;
+import frc.robot.utils.FuelSim;
 import frc.robot.RobotConstants.PortConstants.CAN;
 import frc.robot.RobotState.AutoMode;
 import frc.robot.automation.AimAlongArcRadiusCommand;
 import frc.robot.automation.AutomatedScoring;
+import frc.robot.commands.intake.SetIntakePositionCommand;
+import frc.robot.RobotState.IntakePositions;
 
 //@Logged(name = "RobotContainer")
 public class RobotContainer {
@@ -168,15 +172,15 @@ public class RobotContainer {
                                 });
 
                                 intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIO() {
-                                        
+
                                 });
 
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIO() {
-                                        
+
                                 });
 
                                 ledSubsystem = new LEDSubsystem(new LEDSubsystemIO() {
-                                        
+
                                 });
 
                                 break;
@@ -200,6 +204,8 @@ public class RobotContainer {
                         Shuffleboard.getTab("Autonomous Selection").add("AutoModeSelector", autoMode);
 
                         Shuffleboard.getTab("Power").add(pdp);
+
+                        configureFuelSim();
                 } catch (
 
                 Exception e) {
@@ -231,14 +237,15 @@ public class RobotContainer {
                 driveSubsystem.setDefaultCommand(new TeleopDriveCommand(driveSubsystem, driveJoystick));
 
                 // new JoystickButton(driveJoystick, 6).onTrue(QuestCalibration
-                //                 .CollectCalibrationDataCommand(
-                //                                 driveSubsystem::runChassisSpeeds,
-                //                                 driveSubsystem::resetOdometry,
-                //                                 questNavSubsystem::getUncorrectedPose,
-                //                                 driveSubsystem,
-                //                                 questNavSubsystem));
+                // .CollectCalibrationDataCommand(
+                // driveSubsystem::runChassisSpeeds,
+                // driveSubsystem::resetOdometry,
+                // questNavSubsystem::getUncorrectedPose,
+                // driveSubsystem,
+                // questNavSubsystem));
 
-                new JoystickButton(driveJoystick, 6).whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 2.25, driveJoystick));
+                new JoystickButton(driveJoystick, 6)
+                                .whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 2.25, driveJoystick));
 
                 new JoystickButton(driveJoystick, 1).onTrue(RobotState.setCanRotate(true))
                                 .onFalse(RobotState.setCanRotate(false));
@@ -251,6 +258,11 @@ public class RobotContainer {
                                                                 () -> questNavSubsystem.resetPoseYaw(new Rotation2d())),
                                                 driveSubsystem.gyroReset()));
 
+
+                new POVButton(driveJoystick, 180).whileTrue(new SetIntakePositionCommand(intakeSubsystem, IntakePositions.DEPLOYED));
+                new POVButton(driveJoystick, 0).whileTrue(new SetIntakePositionCommand(intakeSubsystem, IntakePositions.RETRACTED));
+
+                                                
                 // Above = DriveJoystick, Below = OperatorJoystick
 
         }
@@ -276,6 +288,33 @@ public class RobotContainer {
 
         public Field2d getField() {
                 return field;
+        }
+
+        private void configureFuelSim() {
+                FuelSim instance = FuelSim.getInstance();
+                instance.spawnStartingFuel();
+
+                instance.registerRobot(
+                                Units.inchesToMeters(33),
+                                Units.inchesToMeters(33),
+                                Units.inchesToMeters(6),
+                                driveSubsystem::getPose,
+                                driveSubsystem::getChassisSpeeds);
+                // instance.registerIntake(
+                // -Dimensions.FULL_LENGTH.div(2).in(Meters),
+                // Dimensions.FULL_LENGTH.div(2).in(Meters),
+                // -Dimensions.FULL_WIDTH.div(2).plus(Inches.of(7)).in(Meters),
+                // -Dimensions.FULL_WIDTH.div(2).in(Meters),
+                // () -> intake.isRightDeployed() && turret.simAbleToIntake(),
+                // turret::simIntake);
+
+                instance.start();
+                SmartDashboard.putData(Commands.runOnce(() -> {
+                        FuelSim.getInstance().clearFuel();
+                        FuelSim.getInstance().spawnStartingFuel();
+                })
+                                .withName("Reset Fuel")
+                                .ignoringDisable(true));
         }
 
 }

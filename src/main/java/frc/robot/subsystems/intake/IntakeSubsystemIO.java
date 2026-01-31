@@ -26,9 +26,7 @@ public interface IntakeSubsystemIO {
     default void setPercentSpeed(double percent){
     }
 
-    default void setRMP(double rpm){
+    default double getDeploymentMotorEncoderRevs(){return 0.0;}
 
-    }
-
-    default void setIntakePosition(IntakePositions state){}
+    default void setDeploymentMotorPercentSpeed(double percent){}
 }

@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class CowboyUtils {
 
     public static final AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout
-            .loadField(AprilTagFields.kDefaultField);
+            .loadField(AprilTagFields.k2026RebuiltWelded);
 
     public static Pose2d testPose = new Pose2d(1.4, 5.55, new Rotation2d(Math.toRadians(0)));
 

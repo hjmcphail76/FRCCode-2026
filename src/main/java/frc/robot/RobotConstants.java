@@ -376,22 +376,11 @@ public final class RobotConstants {
         }
 
         public static final class ConfigurableAutonsConstants {
-                public enum HumanPlayerPositions {
-                        LEFT,
-                        RIGHT
-                }
+                
+        }
 
-                public enum StartingPositions {
-                        LEFT,
-                        MIDDLE,
-                        RIGHT
-                }
-
-                public enum SidePosition {
-                        LEFT,
-                        ALGAE,
-                        RIGHT
-                }
+        public static final class IntakeContants{
+                public static final double ENCODER_REVOLUTIONS_TO_DEPLOY = 5.0;
         }
 
         public static final class LEDConstants {

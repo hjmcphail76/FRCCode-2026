@@ -13,9 +13,19 @@ public class ShooterSubsystem extends SubsystemBase {
         this.io = io;
     }
 
+    public void setPercentSpeed(double percent){
+        io.setPercentSpeed(percent);
+    }
+
+    public void setRMP(double rpm){
+        io.setRMP(rpm);
+    }
+
     @Override
     public void periodic() {
         io.updateInputs(inputs);
         Logger.processInputs("ShooterSubsystem", inputs);
+
+        //Logger.recordOutput(getName(), null);
     }
 }

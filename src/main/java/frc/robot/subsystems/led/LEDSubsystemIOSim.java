@@ -17,6 +17,6 @@ public class LEDSubsystemIOSim implements LEDSubsystemIO {
 
     @Override
     public void setAnimation(AnimationTypes animation) {
-        System.out.println("Setting LEDs to: " +  animation);
+        //System.out.println("Setting LEDs to: " +  animation);
     }
 }

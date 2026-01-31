@@ -18,13 +18,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.RobotConstants.SimMode;
 import frc.robot.RobotState.AutoMode;
+import frc.robot.utils.FuelSim;
 
 public class Robot extends LoggedRobot {
     private Command m_autonomousCommand;
     private RobotContainer robotContainer = new RobotContainer();
 
     public Robot() {
-        Logger.recordMetadata("FRCCode-2025", "FRCCode-2025"); // Set a metadata value
+        Logger.recordMetadata("FRCCode-2026", "FRCCode-2026"); // Set a metadata value
         if (isReal()) {
             // In real robot mode, log to a USB stick and NetworkTables
             Logger.addDataReceiver(new WPILOGWriter()); // Log to a USB stick ("/U/logs")
@@ -139,7 +140,7 @@ public class Robot extends LoggedRobot {
 
     @Override
     public void simulationPeriodic() {
-
+        FuelSim.getInstance().updateSim();
     }
 
     @Override

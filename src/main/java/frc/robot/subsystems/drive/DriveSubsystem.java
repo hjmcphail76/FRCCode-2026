@@ -509,7 +509,7 @@ public class DriveSubsystem extends SubsystemBase {
         return gyroIO.getGyroYawAngle();
     }
 
-    private ChassisSpeeds getChassisSpeeds() {
+    public ChassisSpeeds getChassisSpeeds() {
 
         return ChassisSpeeds.fromRobotRelativeSpeeds(gyroIO.getVelocityX(), gyroIO.getVelocityY(),
                 Units.degreesToRadians(gyroIO.getRate()),

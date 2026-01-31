@@ -26,7 +26,6 @@ public class IntakeSubsystemIOSparkMax implements IntakeSubsystemIO {
         SparkMaxConfig intakeMotorConfig = new SparkMaxConfig();
         intakeMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kBrake);
         intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
     }
 
     @Override
@@ -35,13 +34,13 @@ public class IntakeSubsystemIOSparkMax implements IntakeSubsystemIO {
     }
 
     @Override
-    public void setRMP(double rpm) {
-
+    public void setDeploymentMotorPercentSpeed(double percent){
+        deploymentMotor.set(percent);
     }
 
     @Override
-    public void setIntakePosition(IntakePositions state) {
-
+    public double getDeploymentMotorEncoderRevs(){
+        return deploymentMotor.getEncoder().getPosition();
     }
 
     @Override

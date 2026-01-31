@@ -16,8 +16,13 @@ public class IntakeSubsystemIOSim implements IntakeSubsystemIO {
     }
 
     @Override
-    public void setRMP(double rpm){
+    public void setDeploymentMotorPercentSpeed(double percent){
         
+    }
+
+    @Override
+    public double getDeploymentMotorEncoderRevs(){
+        return 0.0;
     }
 
     @Override

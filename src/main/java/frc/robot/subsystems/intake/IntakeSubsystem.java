@@ -2,6 +2,7 @@ package frc.robot.subsystems.intake;
 
 import org.littletonrobotics.junction.Logger;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -18,6 +19,18 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void turnIntakeOff(){
         io.setPercentSpeed(0);
+    }
+
+    public void setIntakeSpeed(double percent){
+        io.setPercentSpeed(percent);
+    }
+
+    public void setDeploymentMotorSpeed(double percent){
+        io.setDeploymentMotorPercentSpeed(percent);
+    }
+
+    public double getDeploymentMotorEncoderRevs(){
+        return io.getDeploymentMotorEncoderRevs();
     }
 
     @Override

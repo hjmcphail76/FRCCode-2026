@@ -8,7 +8,7 @@ public class ShooterSubsystemIOSim implements ShooterSubsystemIO {
     public void setRMP(double rpm){
 
     }
-
+//Setting the motor rotations per minute & temp to 0 again?
     @Override
     public void updateInputs(ShooterSubsystemIOInputs inputs) {
         inputs.motorRMP = 0;

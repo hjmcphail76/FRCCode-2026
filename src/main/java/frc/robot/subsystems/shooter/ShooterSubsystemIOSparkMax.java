@@ -20,7 +20,7 @@ public class ShooterSubsystemIOSparkMax implements ShooterSubsystemIO {
 
         closedLoopController = shooterMotor.getClosedLoopController();
     }
-
+//Setting the RPM point and making labeling that it is a control that affects velocity
     @Override
     public void setRMP(double rpm){
         closedLoopController.setSetpoint(rpm, ControlType.kVelocity);
@@ -30,7 +30,7 @@ public class ShooterSubsystemIOSparkMax implements ShooterSubsystemIO {
     public void setPercentSpeed(double speed){
         closedLoopController.setSetpoint(speed, ControlType.kDutyCycle);
     }
-
+//Gets the motor rpm and temperature settings
     @Override
     public void updateInputs(ShooterSubsystemIOInputs inputs) {
         inputs.motorRMP = shooterMotor.getEncoder().getVelocity();

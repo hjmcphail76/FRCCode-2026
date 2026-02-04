@@ -12,7 +12,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public ShooterSubsystem(ShooterSubsystemIO io) {
         this.io = io;
     }
-
+//sets shooter rotation speed
     public void setPercentSpeed(double percent){
         io.setPercentSpeed(percent);
     }
@@ -20,7 +20,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void setRMP(double rpm){
         io.setRMP(rpm);
     }
-
+//Updates the inputs after setting the speed
     @Override
     public void periodic() {
         io.updateInputs(inputs);

@@ -32,6 +32,13 @@ public class RobotState {
         MANUAL
     }
 
+    public static enum IndexerStates{
+        OFF,
+        FEEDING,
+        REVERSE,
+        JAMMED //Maybe will be able to implement this?
+    }
+
     public static enum IntakePositions{
         DEPLOYED,
         RETRACTED

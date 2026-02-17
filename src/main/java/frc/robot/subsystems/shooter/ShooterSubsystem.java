@@ -27,6 +27,10 @@ public class ShooterSubsystem extends SubsystemBase {
         return new InstantCommand(()->setPercentSpeed(percent), this);
     }
 
+    public Command setRPMCommand(double percent){
+        return new InstantCommand(()->setRPM(percent), this);
+    }
+
     @Override
     public void periodic() {
         io.updateInputs(inputs);

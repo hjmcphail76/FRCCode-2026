@@ -255,7 +255,7 @@ public class RobotContainer {
                 // driveSubsystem,
                 // questNavSubsystem));
 
-                new JoystickButton(driveJoystick, 11).whileTrue(shooterSubsystem.setPercentSpeedCommand(1));
+                new JoystickButton(driveJoystick, 11).whileTrue(shooterSubsystem.setRPMCommand(5000));
 
                 new JoystickButton(driveJoystick, 4).onTrue(indexerSubsystem.startIndexing()).onFalse(indexerSubsystem.stopIndexing());
 

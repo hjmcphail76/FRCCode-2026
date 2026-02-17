@@ -1,5 +1,7 @@
 package frc.robot.subsystems.shooter;
 
+import frc.robot.RobotState.ShooterStates;
+
 public class ShooterSubsystemIOSim implements ShooterSubsystemIO {
     
     public void setPercentSpeed(double percent){
@@ -8,10 +10,11 @@ public class ShooterSubsystemIOSim implements ShooterSubsystemIO {
     public void setRMP(double rpm){
 
     }
-//Setting the motor rotations per minute & temp to 0 again?
+
     @Override
     public void updateInputs(ShooterSubsystemIOInputs inputs) {
         inputs.motorRMP = 0;
         inputs.motorTempC = 0;
+        inputs.shooterState = ShooterStates.OFF;
     }
 }

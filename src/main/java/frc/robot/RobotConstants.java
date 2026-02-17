@@ -220,6 +220,11 @@ public final class RobotConstants {
                         public static final int INTAKE_MOTOR = 15;
                         public static final int INTAKE_DEPLOYMENT_MOTOR = 16;
 
+                        public static final int CONVEYOR_MOTOR = 18;
+                        public static final int INDEXER_MOTOR = 19;
+
+                        public static final int FEEDER_MOTOR = 20;
+
                         public static final int SHOOTER_MOTOR = 17;
 
                 }

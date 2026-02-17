@@ -4,6 +4,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import frc.robot.RobotConstants.PortConstants;
@@ -16,7 +17,12 @@ public class ShooterSubsystemIOSparkMax implements ShooterSubsystemIO {
     public ShooterSubsystemIOSparkMax(){
         shooterMotor = new SparkMax(PortConstants.CAN.SHOOTER_MOTOR, MotorType.kBrushless);
         shooterMotorConfig = new SparkMaxConfig();
-        shooterMotorConfig.closedLoop.pid(.3, 0, 0);
+
+        shooterMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
+
+        shooterMotorConfig.apply(shooterMotorConfig);
+
+        shooterMotorConfig.closedLoop.pid(.25, 0, 0);
 
         closedLoopController = shooterMotor.getClosedLoopController();
     }

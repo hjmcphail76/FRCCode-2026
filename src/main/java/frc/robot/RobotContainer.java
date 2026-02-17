@@ -43,6 +43,10 @@ import frc.robot.subsystems.drive.ModuleIOSpark;
 import frc.robot.subsystems.drive.gyro.GyroIO;
 import frc.robot.subsystems.drive.gyro.GyroIONAVX;
 import frc.robot.subsystems.drive.gyro.GyroIOSim;
+import frc.robot.subsystems.indexer.IndexerSubsystem;
+import frc.robot.subsystems.indexer.IndexerSubsystemIO;
+import frc.robot.subsystems.indexer.IndexerSubsystemIOSim;
+import frc.robot.subsystems.indexer.IndexerSubsystemIOSparkMax;
 import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystemIO;
 import frc.robot.subsystems.intake.IntakeSubsystemIOSim;
@@ -78,6 +82,7 @@ public class RobotContainer {
         public final QuestNavSubsystem questNavSubsystem;
         public final DriveSubsystem driveSubsystem;
         public final IntakeSubsystem intakeSubsystem;
+        public final IndexerSubsystem indexerSubsystem;
         public final ShooterSubsystem shooterSubsystem;
         public final LEDSubsystem ledSubsystem;
 
@@ -127,6 +132,8 @@ public class RobotContainer {
 
                                 intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIOSparkMax());
 
+                                indexerSubsystem = new IndexerSubsystem(new IndexerSubsystemIOSparkMax());
+
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIOSparkMax());
 
                                 ledSubsystem = new LEDSubsystem(new LEDSubsystemIOCandle());
@@ -146,6 +153,8 @@ public class RobotContainer {
                                 questNavSubsystem = new QuestNavSubsystem(new QuestNavIOReal());
 
                                 intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIOSim());
+
+                                indexerSubsystem = new IndexerSubsystem(new IndexerSubsystemIOSim());
 
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIOSim());
 
@@ -173,6 +182,9 @@ public class RobotContainer {
 
                                 intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIO() {
 
+                                });
+
+                                indexerSubsystem = new IndexerSubsystem(new IndexerSubsystemIO() {
                                 });
 
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIO() {
@@ -229,7 +241,6 @@ public class RobotContainer {
                                                                 params.get("Example Param")))));
 
                 dynamicAutoRegistry.publishCommands();
-
         }
 
         private void configureButtonBindings() {
@@ -246,8 +257,10 @@ public class RobotContainer {
 
                 new JoystickButton(driveJoystick, 11).whileTrue(shooterSubsystem.setPercentSpeedCommand(1));
 
-                new JoystickButton(driveJoystick, 6)
-                                .whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 2.25, driveJoystick));
+                new JoystickButton(driveJoystick, 4).onTrue(indexerSubsystem.startIndexing()).onFalse(indexerSubsystem.stopIndexing());
+
+                // new JoystickButton(driveJoystick, 6)
+                //                 .whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 2.25, driveJoystick));
 
                 new JoystickButton(driveJoystick, 1).onTrue(RobotState.setCanRotate(true))
                                 .onFalse(RobotState.setCanRotate(false));

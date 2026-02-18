@@ -255,17 +255,18 @@ public class RobotContainer {
                 // driveSubsystem,
                 // questNavSubsystem));
 
-                new JoystickButton(driveJoystick, 11).whileTrue(shooterSubsystem.setRPMCommand(5000));
+                new JoystickButton(driveJoystick, 11).onTrue(shooterSubsystem.setPercentSpeedCommand(-1)).onFalse(shooterSubsystem.setPercentSpeedCommand(0));
 
                 new JoystickButton(driveJoystick, 4).onTrue(indexerSubsystem.startIndexing()).onFalse(indexerSubsystem.stopIndexing());
 
+                new JoystickButton(driveJoystick, 3).onTrue(intakeSubsystem.startIntakingCommand()).onFalse(intakeSubsystem.stopIntakingCommand());
                 // new JoystickButton(driveJoystick, 6)
                 //                 .whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 2.25, driveJoystick));
 
                 new JoystickButton(driveJoystick, 1).onTrue(RobotState.setCanRotate(true))
                                 .onFalse(RobotState.setCanRotate(false));
 
-                new JoystickButton(driveJoystick, 3).onChange(driveSubsystem.xCommand());
+                //new JoystickButton(driveJoystick, 3).onChange(driveSubsystem.xCommand());
 
                 new JoystickButton(driveJoystick, 4)
                                 .whileTrue(new SequentialCommandGroup(

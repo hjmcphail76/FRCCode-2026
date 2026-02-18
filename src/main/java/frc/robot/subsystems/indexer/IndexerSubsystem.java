@@ -16,8 +16,8 @@ public class IndexerSubsystem extends SubsystemBase {
 
     public Command startIndexing(){
         return new InstantCommand(()->{
-            io.setConveyorPercentSpeed(.75);
-            io.setIndexerPercentSpeed(.5);
+            io.setConveyorPercentSpeed(1);
+            io.setIndexerPercentSpeed(1);
         }, this);
     }
     public Command stopIndexing(){

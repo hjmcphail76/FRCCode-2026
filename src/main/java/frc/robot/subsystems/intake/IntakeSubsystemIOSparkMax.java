@@ -24,7 +24,7 @@ public class IntakeSubsystemIOSparkMax implements IntakeSubsystemIO {
         deploymentMotor = new SparkMax(PortConstants.CAN.INTAKE_DEPLOYMENT_MOTOR, MotorType.kBrushless);
 
         SparkMaxConfig intakeMotorConfig = new SparkMaxConfig();
-        intakeMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kBrake);
+        intakeMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
         intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 

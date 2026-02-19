@@ -24,6 +24,6 @@ public interface IndexerSubsystemIO {
     default void setConveyorPercentSpeed(double percent){
     }
 
-    default void setIndexerPercentSpeed(double percent){
+    default void setRollerPercentSpeed(double percent){
     }
 }

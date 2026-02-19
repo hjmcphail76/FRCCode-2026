@@ -15,7 +15,7 @@ public class IndexerSubsystemIOSim implements IndexerSubsystemIO {
     }
 
     @Override
-    public void setIndexerPercentSpeed(double percent) {
+    public void setRollerPercentSpeed(double percent) {
     }
 
     @Override

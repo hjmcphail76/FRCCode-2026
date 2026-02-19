@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -43,6 +44,10 @@ import frc.robot.subsystems.drive.ModuleIOSpark;
 import frc.robot.subsystems.drive.gyro.GyroIO;
 import frc.robot.subsystems.drive.gyro.GyroIONAVX;
 import frc.robot.subsystems.drive.gyro.GyroIOSim;
+import frc.robot.subsystems.feeder.FeederSubsystem;
+import frc.robot.subsystems.feeder.FeederSubsystemIO;
+import frc.robot.subsystems.feeder.FeederSubsystemIOSim;
+import frc.robot.subsystems.feeder.FeederSubsystemIOSparkMax;
 import frc.robot.subsystems.indexer.IndexerSubsystem;
 import frc.robot.subsystems.indexer.IndexerSubsystemIO;
 import frc.robot.subsystems.indexer.IndexerSubsystemIOSim;
@@ -73,7 +78,6 @@ import frc.robot.RobotConstants.PortConstants.CAN;
 import frc.robot.RobotState.AutoMode;
 import frc.robot.automation.AimAlongArcRadiusCommand;
 import frc.robot.automation.AutomatedScoring;
-import frc.robot.commands.intake.SetIntakePositionCommand;
 import frc.robot.RobotState.IntakePositions;
 
 //@Logged(name = "RobotContainer")
@@ -83,6 +87,7 @@ public class RobotContainer {
         public final DriveSubsystem driveSubsystem;
         public final IntakeSubsystem intakeSubsystem;
         public final IndexerSubsystem indexerSubsystem;
+        public final FeederSubsystem feederSubsystem;
         public final ShooterSubsystem shooterSubsystem;
         public final LEDSubsystem ledSubsystem;
 
@@ -134,6 +139,8 @@ public class RobotContainer {
 
                                 indexerSubsystem = new IndexerSubsystem(new IndexerSubsystemIOSparkMax());
 
+                                feederSubsystem = new FeederSubsystem(new FeederSubsystemIOSparkMax());
+
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIOSparkMax());
 
                                 ledSubsystem = new LEDSubsystem(new LEDSubsystemIOCandle());
@@ -155,6 +162,8 @@ public class RobotContainer {
                                 intakeSubsystem = new IntakeSubsystem(new IntakeSubsystemIOSim());
 
                                 indexerSubsystem = new IndexerSubsystem(new IndexerSubsystemIOSim());
+
+                                feederSubsystem = new FeederSubsystem(new FeederSubsystemIOSim());
 
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIOSim());
 
@@ -185,6 +194,9 @@ public class RobotContainer {
                                 });
 
                                 indexerSubsystem = new IndexerSubsystem(new IndexerSubsystemIO() {
+                                });
+
+                                feederSubsystem = new FeederSubsystem(new FeederSubsystemIO() {     
                                 });
 
                                 shooterSubsystem = new ShooterSubsystem(new ShooterSubsystemIO() {
@@ -255,11 +267,12 @@ public class RobotContainer {
                 // driveSubsystem,
                 // questNavSubsystem));
 
-                new JoystickButton(driveJoystick, 11).onTrue(shooterSubsystem.setPercentSpeedCommand(-1)).onFalse(shooterSubsystem.setPercentSpeedCommand(0));
+                //new JoystickButton(driveJoystick, 11).onTrue(shooterSubsystem.setPercentSpeedCommand(-1)).onFalse(shooterSubsystem.setPercentSpeedCommand(0));
 
-                new JoystickButton(driveJoystick, 4).onTrue(indexerSubsystem.startIndexing()).onFalse(indexerSubsystem.stopIndexing());
+                new JoystickButton(driveJoystick, 4).whileTrue(AutomatedScoring.shootFromHopperContinousCommand(intakeSubsystem,indexerSubsystem,feederSubsystem, shooterSubsystem));
 
-                new JoystickButton(driveJoystick, 3).onTrue(intakeSubsystem.startIntakingCommand()).onFalse(intakeSubsystem.stopIntakingCommand());
+                new JoystickButton(driveJoystick, 3).onTrue(intakeSubsystem.runIntakeNormalCommand()).onFalse(intakeSubsystem.stopIntakingCommand());
+                
                 // new JoystickButton(driveJoystick, 6)
                 //                 .whileTrue(new AimAlongArcRadiusCommand(driveSubsystem, 2.25, driveJoystick));
 
@@ -273,11 +286,6 @@ public class RobotContainer {
                                                 Commands.deferredProxy(
                                                                 () -> questNavSubsystem.resetPoseYaw(new Rotation2d())),
                                                 driveSubsystem.gyroReset()));
-
-
-                new POVButton(driveJoystick, 180).whileTrue(new SetIntakePositionCommand(intakeSubsystem, IntakePositions.DEPLOYED));
-                new POVButton(driveJoystick, 0).whileTrue(new SetIntakePositionCommand(intakeSubsystem, IntakePositions.RETRACTED));
-
                                                 
                 // Above = DriveJoystick, Below = OperatorJoystick
 

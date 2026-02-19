@@ -15,22 +15,22 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 
 public class IndexerSubsystemIOSparkMax implements IndexerSubsystemIO {
     SparkMax conveyorMotor;
-    SparkMax indexerMotor;
+    SparkMax rollerMotor;
 
     SparkMaxConfig conveyerMotorConfig;
-    SparkMaxConfig indexerMotorConfig;
+    SparkMaxConfig rollerMotorConfig;
 
     public IndexerSubsystemIOSparkMax() {
         conveyorMotor = new SparkMax(PortConstants.CAN.CONVEYOR_MOTOR, MotorType.kBrushless);
-        indexerMotor = new SparkMax(PortConstants.CAN.INDEXER_MOTOR, MotorType.kBrushless);
+        rollerMotor = new SparkMax(PortConstants.CAN.INDEXER_MOTOR, MotorType.kBrushless);
 
         conveyerMotorConfig = new SparkMaxConfig();
         conveyerMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
         conveyorMotor.configure(conveyerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-        indexerMotorConfig = new SparkMaxConfig();
-        indexerMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
-        indexerMotor.configure(conveyerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rollerMotorConfig = new SparkMaxConfig();
+        rollerMotorConfig.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
+        rollerMotor.configure(conveyerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class IndexerSubsystemIOSparkMax implements IndexerSubsystemIO {
     }
 
     @Override
-    public void setIndexerPercentSpeed(double percent) {
-        indexerMotor.set(percent);
+    public void setRollerPercentSpeed(double percent) {
+        rollerMotor.set(percent);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class IndexerSubsystemIOSparkMax implements IndexerSubsystemIO {
         inputs.conveyorMotorRMP = conveyorMotor.getEncoder().getVelocity();
         inputs.conveyorMotorTempC = conveyorMotor.getMotorTemperature();
 
-        inputs.indexerMotor = indexerMotor.getEncoder().getVelocity();
-        inputs.indexerMotorTempC = indexerMotor.getMotorTemperature();
+        inputs.indexerMotor = rollerMotor.getEncoder().getVelocity();
+        inputs.indexerMotorTempC = rollerMotor.getMotorTemperature();
 
     }
 }

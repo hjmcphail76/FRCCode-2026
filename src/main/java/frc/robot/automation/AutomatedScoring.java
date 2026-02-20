@@ -25,8 +25,7 @@ public class AutomatedScoring {
 
     public static Command shootFromHopperContinousCommand(IntakeSubsystem intakeSubsystem, IndexerSubsystem indexerSubsystem, FeederSubsystem feederSubsystem, ShooterSubsystem shooterSubsystem){
         return (Commands.sequence(
-            feederSubsystem.pullBallsBackCommand(),
-            shooterSubsystem.setPercentSpeedCommand(1),
+            shooterSubsystem.setPercentSpeedCommand(-1),
             new WaitCommand(1),
             Commands.parallel(
                 intakeSubsystem.runIntakeAgitationContinousCommand(),
@@ -35,6 +34,18 @@ public class AutomatedScoring {
             )
             ));
     }
+
+    public static Command stopAllSuperStructure(IntakeSubsystem intakeSubsystem, IndexerSubsystem indexerSubsystem, FeederSubsystem feederSubsystem, ShooterSubsystem shooterSubsystem){
+        return (Commands.sequence(
+            Commands.parallel(
+                intakeSubsystem.stopIntakingCommand(),
+                indexerSubsystem.stopIndexing(),
+                feederSubsystem.stopFeedingBallsCommand(),
+                shooterSubsystem.setPercentSpeedCommand(0)
+            )
+            ));
+    }
+
 
 
     public static Command PPmoveToPose(Pose2d pose) {

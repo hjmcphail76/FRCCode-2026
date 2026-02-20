@@ -35,7 +35,8 @@ public class IndexerSubsystem extends SubsystemBase {
 
     public Command stopIndexing() {
         return Commands.runOnce(() -> {
-            setIndexerSpeedCommand(0,0);
+            io.setConveyorPercentSpeed(0);
+            io.setRollerPercentSpeed(0);
         }, this);
     }
 

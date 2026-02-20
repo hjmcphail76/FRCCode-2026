@@ -27,19 +27,19 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public Command setIntakeSpeedCommand(double speed){
-        return Commands.run(()->io.setPercentSpeed(speed), this);
+        return new InstantCommand(()->io.setPercentSpeed(speed), this);
     }
 
     public Command runIntakeAgitationContinousCommand() {
         return Commands.repeatingSequence(
-                setIntakeSpeedCommand(.5),
+                setIntakeSpeedCommand(-.7),
                 new WaitCommand(0.075),
-                setIntakeSpeedCommand(-.75),
-                new WaitCommand(3));
+                setIntakeSpeedCommand(.75),
+                new WaitCommand(2));
     }
 
     public Command runIntakeNormalCommand(){
-        return Commands.run(()->setDeploymentMotorSpeed(-.75), this);
+        return Commands.run(()->setDeploymentMotorSpeed(-.85), this);
     }
 
     public Command stopIntakingCommand() {

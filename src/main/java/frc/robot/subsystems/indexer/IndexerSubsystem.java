@@ -28,9 +28,9 @@ public class IndexerSubsystem extends SubsystemBase {
     public Command runIndexerAgitationContinousCommand() {
         return Commands.repeatingSequence(
                 setIndexerSpeedCommand(1,1),
-                new WaitCommand(4),
+                new WaitCommand(1),
                 setIndexerSpeedCommand(-.8,-.6),
-                new WaitCommand(.2));
+                new WaitCommand(0.75));
     }
 
     public Command stopIndexing() {

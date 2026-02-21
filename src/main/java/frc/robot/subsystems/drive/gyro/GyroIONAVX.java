@@ -9,12 +9,12 @@ public class GyroIONAVX implements GyroIO {
     private static AHRS m_gyro;
 
     public GyroIONAVX() {
-        m_gyro = new AHRS(AHRS.NavXComType.kMXP_SPI);
+        m_gyro = new AHRS(AHRS.NavXComType.kUSB1);
     }
 
     @Override
     public double getGyroYawAngle() {
-        return m_gyro.getAngle() * DrivetrainConstants.GYRO_ORIENTATION;
+        return m_gyro.getRoll() * DrivetrainConstants.GYRO_ORIENTATION;
     }
 
     @Override

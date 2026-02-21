@@ -267,6 +267,8 @@ public class RobotContainer {
                 // driveSubsystem,
                 // questNavSubsystem));
 
+                new JoystickButton(driveJoystick, 6).whileTrue(driveSubsystem.gyroReset());
+
                 new JoystickButton(driveJoystick, 11).onTrue(shooterSubsystem.setPercentSpeedCommand(-1)).onFalse(shooterSubsystem.setPercentSpeedCommand(0));
 
                 new JoystickButton(driveJoystick, 4).whileTrue(AutomatedScoring.shootFromHopperContinousCommand(intakeSubsystem,indexerSubsystem,feederSubsystem, shooterSubsystem)).onFalse(AutomatedScoring.stopAllSuperStructure(intakeSubsystem,indexerSubsystem,feederSubsystem,shooterSubsystem));

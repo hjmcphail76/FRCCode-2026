@@ -338,13 +338,13 @@ public class DriveSubsystem extends SubsystemBase {
         double rotDelivered = m_currentRotation * DrivetrainConstants.MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
 
         ChassisSpeeds speeds;
-        if (antiTipping.isTipping() && antiTippingEnabled) {
-            ChassisSpeeds ogSpeeds = antiTipping.getVelocityAntiTipping();
-            speeds = ogSpeeds;// new ChassisSpeeds(ogSpeeds.vyMetersPerSecond, ogSpeeds.vxMetersPerSecond,
-                              // ogSpeeds.omegaRadiansPerSecond);
-        } else {
+        // if (antiTipping.isTipping() && antiTippingEnabled) {
+        //     ChassisSpeeds ogSpeeds = antiTipping.getVelocityAntiTipping();
+        //     speeds = ogSpeeds;// new ChassisSpeeds(ogSpeeds.vyMetersPerSecond, ogSpeeds.vxMetersPerSecond,
+        //                       // ogSpeeds.omegaRadiansPerSecond);
+        //} else {
             speeds = new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered);
-        }
+        //}
 
         Rotation2d rotation = gyroIO.getGyroYawRotation2d();
 

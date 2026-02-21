@@ -107,7 +107,7 @@
     },
     {
       "waypointRelativePos": 4,
-      "rotationDegrees": 137.55975396448486
+      "rotationDegrees": 137.55975396448488
     }
   ],
   "constraintZones": [],
@@ -126,7 +126,7 @@
     "rotation": -0.8184554616886548
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Concepts",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

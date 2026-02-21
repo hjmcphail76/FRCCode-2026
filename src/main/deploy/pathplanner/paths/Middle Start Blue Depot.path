@@ -40,7 +40,7 @@
         "y": 5.503476190477663
       },
       "nextControl": {
-        "x": 0.3052661312257543,
+        "x": 0.3052661312257541,
         "y": 4.681763690739143
       },
       "isLocked": false,
@@ -52,7 +52,7 @@
         "y": 6.993547619049091
       },
       "prevControl": {
-        "x": 0.5364133539385633,
+        "x": 0.5364133539385634,
         "y": 5.294156939076582
       },
       "nextControl": {
@@ -126,7 +126,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Concepts",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0
